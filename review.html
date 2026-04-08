@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Reviews</title>
+<link rel="stylesheet" href="reviews.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">StaySmart</a>
+        
+        <!-- hamburger Menu Toggle -->
+        <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+        
+        <ul id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="search.html">Hotels</a></li>
+        <li><a href="review.html">Reviews</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+<div class="container">
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search by hotel name or location">
+        <button id="searchBtn">Search</button>
+    </div>
+    <div id="hotelsContainer"></div>
+</div>
+
+<script src="reviews.js"></script>
+</body>
+</html>

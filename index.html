@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StaySmart</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<body>
+
+  <nav class="navbar">
+    <a href="#" class="logo">StaySmart</a>
+    <!-- hamburger Menu Toggle -->
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+    <ul id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="search.html">Hotels</a></li>
+      <li><a href="review.html">Reviews</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div id="hero-section">
+    <div id="hero-image">
+        <img src = "./heroimage/hero-img.jpg">
+        <form action="search.html" method="get">
+          <div class="input-container">
+            <input type="text" name="location" placeholder="Where to?">
+          </div>
+
+          <div class="input-container">
+            <input type="text" name="roomtype" placeholder="Room Type">
+          </div>
+
+          <button type="submit" class="search-btn">
+            Search
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+    </div>
+  </div>
+
+
+  <div id="hotels-preview-section">
+    <h1> Explore stays in popular destinations</h1>
+    <div id="hotels-grid">
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

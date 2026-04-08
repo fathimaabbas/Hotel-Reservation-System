@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Reservation - Help Center</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+    header {
+      background: #ffffff;
+      color: #e33f3f;
+      padding: 25px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 10;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    nav ul li {
+      margin-left: 25px;
+    }
+
+    nav ul li a {
+      color: #e33f3f;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover {
+      color: #ffd700;
+    }
+    .help-center {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .help-center h2 {
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    .help-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .help-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      background: #fafafa;
+      transition: transform 0.2s, background 0.2s;
+      cursor: pointer;
+    }
+
+    .help-card:hover {
+      transform: translateY(-5px);
+      background: #f0f0f0;
+    }
+
+    .help-card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .help-card p {
+      font-size: 14px;
+      color: #666;
+      margin: 0;
+    }
+
+    .help-details {
+      display: none;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #444;
+      padding-left: 15px;
+    }
+
+    .help-details li {
+      margin-bottom: 6px;
+    }
+
+    .help-card.active .help-details {
+      display: block;
+    }
+    footer {
+      background: #f8f2e7;
+      padding: 40px 20px;
+      margin-top: 50px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    footer h4 {
+      margin-bottom: 15px;
+      font-size: 16px;
+      color: #222;
+    }
+
+    footer ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    footer ul li {
+      margin-bottom: 8px;
+    }
+
+    footer ul li a {
+      text-decoration: none;
+      color: #0071c2;
+      font-size: 14px;
+    }
+
+    footer ul li a:hover {
+      text-decoration: underline;
+    }
+    df-messenger {
+      --df-messenger-bot-message: #f0f0f0;
+      --df-messenger-button-titlebar-color: #333;
+      --df-messenger-chat-background-color: #fff;
+      --df-messenger-font-color: #000;
+      --df-messenger-send-icon: #333;
+      --df-messenger-user-message: #e33f3f;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>StaySmart</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="search.html">Hotels</a></li>
+        <li><a href="review.html">Reviews</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section class="help-center">
+    <h2>Explore Help Articles</h2>
+    <div class="help-grid">
+      
+      <div class="help-card" onclick="toggleHelp(this)">
+        <h3>Refunds & Charges</h3>
+        <p>Learn about cancellations, refunds, and extra charges.</p>
+        <ul class="help-details">
+          <li>💳 Cancellation policies explained</li>
+          <li>💵 How refunds are processed</li>
+          <li>📑 Extra charges & taxes</li>
+        </ul>
+      </div>
+
+      <div class="help-card" onclick="toggleHelp(this)">
+        <h3>Stays</h3>
+        <p>Find details about your hotel stays and bookings.</p>
+        <ul class="help-details">
+          <li>🏨 Check-in and check-out rules</li>
+          <li>🛏 Room facilities and upgrades</li>
+          <li>📆 Changing your booking dates</li>
+        </ul>
+      </div>
+
+      <div class="help-card" onclick="toggleHelp(this)">
+        <h3>Account</h3>
+        <p>Manage your profile, login details, and preferences.</p>
+        <ul class="help-details">
+          <li>🔑 Reset or change password</li>
+          <li>👤 Update personal details</li>
+          <li>📧 Manage email & notifications</li>
+        </ul>
+      </div>
+
+      <div class="help-card" onclick="toggleHelp(this)">
+        <h3>Privacy</h3>
+        <p>Understand how your personal data is protected.</p>
+        <ul class="help-details">
+          <li>🔒 Data encryption and storage</li>
+          <li>📜 Your rights to your data</li>
+          <li>⚖ How we comply with GDPR</li>
+        </ul>
+      </div>
+
+      <div class="help-card" onclick="toggleHelp(this)">
+        <h3>Security</h3>
+        <p>Learn how we keep your account safe and secure.</p>
+        <ul class="help-details">
+          <li>🛡 Two-factor authentication</li>
+          <li>🔐 Preventing unauthorized access</li>
+          <li>📢 Reporting suspicious activity</li>
+        </ul>
+      </div>
+
+      <div class="help-card" onclick="toggleHelp(this)">
+        <h3>Loyalty & Rewards</h3>
+        <p>Know about reward points and special member offers.</p>
+        <ul class="help-details">
+          <li>🎁 Earning points on bookings</li>
+          <li>🏅 Redeeming rewards</li>
+          <li>💎 Exclusive member perks</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>Top Destinations</h4>
+        <ul>
+          <li><a href="#">Hotels in Dubai</a></li>
+          <li><a href="#">Hotels in Paris</a></li>
+          <li><a href="#">Hotels in London</a></li>
+          <li><a href="#">Hotels in Mumbai</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Top Countries & Regions</h4>
+        <ul>
+          <li><a href="#">Hotels in Maldives</a></li>
+          <li><a href="#">Hotels in Singapore</a></li>
+          <li><a href="#">Hotels in Mauritius</a></li>
+          <li><a href="#">Hotels in Sri Lanka</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support & FAQs</h4>
+        <ul>
+          <li><a href="#">Your Bookings</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Review a Property</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Policies</h4>
+        <ul>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookies</a></li>
+          <li><a href="#">Content Guidelines</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Other Information</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Travel Guides</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+  <df-messenger
+    intent="WELCOME"
+    chat-title="HotelAssistant"
+    agent-id="56b2fe3a-c966-40ac-9a6f-d6f4cbdb0cf9"
+    language-code="en"
+  ></df-messenger>
+
+  <script>
+    function toggleHelp(card) {
+      card.classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>

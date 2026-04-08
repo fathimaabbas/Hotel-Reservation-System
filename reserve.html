@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserve Room</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="#" class="logo">StaySmart</a>
+        
+        <!-- hamburger Menu Toggle -->
+        <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+        
+        <ul id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="search.html">Hotels</a></li>
+        <li><a href="review.html">Reviews</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <h2>Book Your Room</h2>
+        <form id="reservation-form">
+            <input type="hidden" name="roomId" id="roomId">
+            <div class="form-group">
+                <label for="customerName">Your Name:</label>
+                <input type="text" id="customerName" name="customerName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <button type="submit" class="reserve-btn">Confirm Reservation</button>
+        </form>
+    </div>
+    
+    <script src="reserve.js"></script>
+</body>
+</html>
