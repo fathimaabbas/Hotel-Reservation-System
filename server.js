@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const db = require('./db');
 
 const app = express();
@@ -7,6 +8,12 @@ const port = 3000;
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 /*
 app.get('/hotels', async (req, res) => {
     try {
@@ -121,30 +128,6 @@ app.get('/hotels', async (req, res) => {
     }
 });
 
-// 2️⃣ Search hotels by location (optional, separate endpoint)
-app.get('/search', async (req,res)=>{
-    const { location } = req.query;
-    try{
-        let query = `
-            SELECT h.Hotelid, h.HotelName, h.Location, h.Email, h.Phone
-            FROM Hotel h
-            WHERE 1=1
-        `;
-        let values = [];
-
-        if(location){
-            query += " AND h.Location LIKE ?";
-            values.push(`%${location}%`);
-        }
-
-        const [rows] = await db.query(query, values);
-        res.json(rows);
-    } catch(err){
-        console.error(err);
-        res.status(500).send('Database error');
-    }
-});
-
 // 3️⃣ Get all reviews for a specific hotel
 app.get('/reviews', async (req,res)=>{
     const hotelId = req.query.hotelId;
@@ -224,112 +207,3 @@ app.listen(port, () => {
     console.log(`Backend running at http://localhost:${port}`);
 });
 
-
-
-/*const express = require('express');
-const cors = require('cors');
-const db = require('./db');
-
-const app = express();
-const port = 3000;
-
-// Middleware
-app.use(cors());
-app.use(express.json()); // To parse JSON bodies from POST requests
-
-// 1️⃣ Get all hotels for the homepage with average rating and total reviews
-app.get('/hotels', async (req, res) => {
-    const searchQuery = req.query.search || '';
-    try {
-        let query = `
-            SELECT
-                h.Hotelid,
-                h.HotelName,
-                h.Location,
-                h.Email,
-                h.Phone,
-                h.ImageUrl,
-                ROUND(AVG(r.Rating), 1) AS AverageRating,
-                COUNT(r.Rating) AS ReviewCount
-            FROM Hotel h
-            LEFT JOIN Review r ON h.Hotelid = r.Hotelid
-        `;
-        const values = [];
-        if (searchQuery) {
-            query += ` WHERE h.HotelName LIKE ? OR h.Location LIKE ?`;
-            values.push(`%${searchQuery}%`, `%${searchQuery}%`);
-        }
-        query += ' GROUP BY h.Hotelid';
-        const [rows] = await db.query(query, values);
-        res.json(rows);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Server Error');
-    }
-});
-
-// 2️⃣ Search for hotels with specific location and room type
-app.get('/search', async (req, res) => {
-    const { location, roomtype } = req.query;
-    try {
-        let query = `
-            SELECT DISTINCT h.*, rt.TypeName, rt.Capacity
-            FROM Hotel h
-            JOIN Room r ON h.Hotelid = r.Hotelid
-            JOIN RoomType rt ON r.RoomTypeid = rt.RoomTypeid
-            WHERE 1=1
-        `;
-        let values = [];
-
-        if (location) {
-            query += " AND h.Location LIKE ?";
-            values.push(`%${location}%`);
-        }
-
-        if (roomtype) {
-            query += " AND rt.TypeName LIKE ?";
-            values.push(`%${roomtype}%`);
-        }
-
-        const [rows] = await db.query(query, values);
-        res.json(rows);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Database error');
-    }
-});
-
-// 3️⃣ Get all reviews for a specific hotel ID
-app.get('/reviews', async (req, res) => {
-    const { hotelId } = req.query;
-    if (!hotelId) return res.status(400).send('hotelId is required');
-
-    try {
-        const [rows] = await db.query('SELECT Comment, Rating FROM Review WHERE Hotelid = ?', [hotelId]);
-        res.json(rows);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Server Error');
-    }
-});
-
-// 4️⃣ Submit a new review
-app.post('/reviews', async (req, res) => {
-    const { hotelId, comment, rating } = req.body;
-    if (!hotelId || !comment || !rating) return res.status(400).send('Missing data');
-
-    try {
-        await db.query(
-            'INSERT INTO Review (Hotelid, Comment, Rating) VALUES (?, ?, ?)',
-            [hotelId, comment, rating]
-        );
-        res.sendStatus(200);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Server Error');
-    }
-});
-
-app.listen(port, () => {
-    console.log(`Backend running at http://localhost:${port}`);
-});*/
